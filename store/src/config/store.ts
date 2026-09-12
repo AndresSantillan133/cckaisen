@@ -7,8 +7,8 @@
 
 export const STORE_CONFIG = {
   brand: {
-    name: "KAISEN WEAR",
-    shortCode: "KSN", // usado para el folio del pedido, ej. KSN-20260912-001
+    name: "STUDIO VORTALIA",
+    shortCode: "SV", // usado para el folio del pedido, ej. SV-20260912-4X5E
     tagline: "Oversized. Sin excusas.",
     description:
       "Playeras oversized streetwear premium. Calidad real, tallas grandes.",

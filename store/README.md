@@ -1,4 +1,4 @@
-# KAISEN WEAR — Tienda de playeras oversized
+# STUDIO VORTALIA — Tienda de playeras oversized
 
 Landing page / e-commerce para vender playeras oversized por pedido, con el
 flujo de compra terminando en un mensaje de WhatsApp prellenado hacia el
@@ -17,7 +17,8 @@ separado.
 - html2canvas (para exportar el ticket como imagen PNG)
 
 No usa GSAP ni una librería de animación adicional: Framer Motion ya cubre
-todo lo pedido (scroll reveals, hover, el efecto de ticket saliendo de la
+todo lo pedido (marquee, blobs de fondo, parallax del hero, header que se
+comprime al hacer scroll, scroll reveals, hover, el efecto de ticket saliendo de la
 máquina, etc.) sin sumar peso extra al bundle.
 
 ## Cómo correr el proyecto
@@ -59,6 +60,19 @@ src/
     Checkout/    CheckoutForm, OrderSummary, CheckoutModal
     Ticket/      Ticket (diseño del recibo), TicketAnimation (efecto impresora)
 ```
+
+## Tipografía y logo
+
+El nombre de la marca (Header, Hero, Footer) usa la clase `.brand-wordmark`
+(definida en `src/index.css`), que aplica la tipografía **Permanent
+Marker** (Google Fonts) con un degradado dorado y sombra, imitando el estilo
+de tag/grafiti del logo oficial de Studio Vortalia. El resto del sitio
+(precios, botones, párrafos) sigue la paleta negro/blanco/verde normal — el
+dorado es exclusivo del wordmark, no del sistema de color general.
+
+El ticket de compra (`components/Ticket/Ticket.tsx`) usa tipografía
+monoespaciada normal a propósito, para que se sienta como un recibo térmico
+real y no compita visualmente con el logo.
 
 ## Cómo editar el catálogo (productos, colores, stock)
 

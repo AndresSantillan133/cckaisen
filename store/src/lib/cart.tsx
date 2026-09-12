@@ -10,7 +10,7 @@ import type { ReactNode } from "react";
 import type { CartLine, Size } from "./types";
 import { getProductById } from "../data/products";
 
-const STORAGE_KEY = "kaisen-cart-v1";
+const STORAGE_KEY = "vortalia-cart-v1";
 
 type CartState = { lines: CartLine[] };
 

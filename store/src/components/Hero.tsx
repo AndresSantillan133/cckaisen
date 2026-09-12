@@ -1,9 +1,17 @@
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { STORE_CONFIG } from "../config/store";
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+  const parallaxY = useTransform(scrollY, [0, 500], [0, reduceMotion ? 0 : 120]);
+  const fadeOut = useTransform(scrollY, [0, 400], [1, 0]);
 
   const container = {
     hidden: {},
@@ -24,7 +32,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[92vh] flex-col items-center justify-center overflow-hidden px-4 pt-20 text-center"
+      className="relative flex min-h-[92vh] flex-col items-center justify-center overflow-hidden px-4 pt-24 text-center"
     >
       <div
         aria-hidden
@@ -35,10 +43,39 @@ export default function Hero() {
         }}
       />
 
+      {/* Blobs decorativos con movimiento continuo y sutil */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 top-16 h-72 w-72 rounded-full bg-brand-green/20 blur-3xl motion-reduce:animate-none"
+        animate={reduceMotion ? {} : "blob"}
+        variants={{
+          blob: {
+            x: [0, 40, -30, 0],
+            y: [0, -30, 30, 0],
+            scale: [1, 1.15, 0.9, 1],
+            transition: { duration: 14, repeat: Infinity, ease: "easeInOut" },
+          },
+        }}
+      />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-brand-green/10 blur-3xl motion-reduce:animate-none"
+        animate={reduceMotion ? {} : "blob"}
+        variants={{
+          blob: {
+            x: [0, -35, 25, 0],
+            y: [0, 25, -25, 0],
+            scale: [1, 0.9, 1.2, 1],
+            transition: { duration: 18, repeat: Infinity, ease: "easeInOut" },
+          },
+        }}
+      />
+
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
+        style={{ y: parallaxY, opacity: fadeOut }}
         className="relative z-10 flex max-w-3xl flex-col items-center gap-6"
       >
         <motion.span
@@ -50,7 +87,7 @@ export default function Hero() {
 
         <motion.h1
           variants={item}
-          className="font-display text-5xl uppercase leading-[0.95] tracking-tight sm:text-7xl md:text-8xl"
+          className="brand-wordmark text-6xl leading-[0.85] sm:text-8xl md:text-9xl"
         >
           {STORE_CONFIG.brand.name}
         </motion.h1>
@@ -64,12 +101,26 @@ export default function Hero() {
         </motion.p>
 
         <motion.div variants={item} className="mt-2">
-          <a
+          <motion.a
             href="#catalogo"
-            className="inline-flex items-center gap-2 rounded-full bg-brand-green px-8 py-4 text-base font-bold text-black shadow-[0_0_40px_rgba(34,197,94,0.35)] transition active:scale-95 sm:hover:scale-105"
+            animate={
+              reduceMotion
+                ? {}
+                : {
+                    boxShadow: [
+                      "0 0 20px rgba(34,197,94,0.35)",
+                      "0 0 44px rgba(34,197,94,0.6)",
+                      "0 0 20px rgba(34,197,94,0.35)",
+                    ],
+                  }
+            }
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 rounded-full bg-brand-green px-8 py-4 text-base font-bold text-black"
           >
             Comprar ahora
-          </a>
+          </motion.a>
         </motion.div>
       </motion.div>
 

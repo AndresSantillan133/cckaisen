@@ -1,8 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 
+/*
+ * "Permanent Marker" se sirve como archivo local (public/fonts) en vez de
+ * vía Google Fonts: es la tipografía del wordmark de la marca y así
+ * garantizamos que siempre cargue, sin depender de una petición extra a
+ * fonts.gstatic.com en cada visita.
+ */
+@font-face {
+  font-family: "Permanent Marker";
+  src: url("/fonts/permanent-marker.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --font-display: "Anton", "Inter", sans-serif;
+  --font-tag: "Permanent Marker", "Anton", "Inter", sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "Courier New", monospace;
 
@@ -13,8 +28,9 @@
   --color-brand-green: #22c55e;
   --color-brand-green-dark: #16a34a;
   --color-brand-green-light: #4ade80;
+  --color-brand-gold: #d4a017;
 
-  --animate-marquee: marquee 26s linear infinite;
+  --animate-marquee: marquee 22s linear infinite;
 }
 
 @keyframes marquee {
@@ -69,6 +85,19 @@ body {
 .text-outline {
   -webkit-text-stroke: 1px rgba(245, 245, 245, 0.5);
   color: transparent;
+}
+
+/* Wordmark tipo "tag" de grafiti dorado, inspirado en el logo de la marca. */
+.brand-wordmark {
+  font-family: var(--font-tag);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  background: linear-gradient(160deg, #fde68a 0%, #d4a017 45%, #92650c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(2px 3px 0 rgba(0, 0, 0, 0.55));
 }
 
 @media (prefers-reduced-motion: reduce) {
