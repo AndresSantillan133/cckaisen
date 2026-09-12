@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+/*
+ * "Permanent Marker" se sirve como archivo local (public/fonts) en vez de
+ * vía Google Fonts: es la tipografía del wordmark de la marca y así
+ * garantizamos que siempre cargue, sin depender de una petición extra a
+ * fonts.gstatic.com en cada visita.
+ */
+@font-face {
+  font-family: "Permanent Marker";
+  src: url("/fonts/permanent-marker.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-display: "Anton", "Inter", sans-serif;
+  --font-tag: "Permanent Marker", "Anton", "Inter", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "Courier New", monospace;
+
+  --color-brand-black: #000000;
+  --color-brand-black-soft: #0a0a0a;
+  --color-brand-charcoal: #161616;
+  --color-brand-white: #f5f5f5;
+  --color-brand-green: #22c55e;
+  --color-brand-green-dark: #16a34a;
+  --color-brand-green-light: #4ade80;
+  --color-brand-gold: #d4a017;
+
+  --animate-marquee: marquee 22s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-brand-black);
+  color: var(--color-brand-white);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-brand-green);
+  color: #000;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-green-dark);
+  border-radius: 4px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-green);
+  outline-offset: 2px;
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(245, 245, 245, 0.5);
+  color: transparent;
+}
+
+/* Wordmark tipo "tag" de grafiti dorado, inspirado en el logo de la marca. */
+.brand-wordmark {
+  font-family: var(--font-tag);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  background: linear-gradient(160deg, #fde68a 0%, #d4a017 45%, #92650c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(2px 3px 0 rgba(0, 0, 0, 0.55));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700">
+  <rect width="600" height="700" fill="#f5f5f5"/>
+  <g transform="translate(300,320)">
+    <path d="M -180 -230 L -60 -270 Q 0 -230 60 -270 L 180 -230 L 240 -120 L 160 -70 L 160 260 L -160 260 L -160 -70 L -240 -120 Z"
+          fill="#111111" stroke="#00000022" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+  <text x="300" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#333">PLAYERA NEGRA</text>
+  <text x="300" y="675" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#999">Foto real pendiente de subir</text>
+</svg>
