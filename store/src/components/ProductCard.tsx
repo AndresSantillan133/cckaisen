@@ -41,13 +41,13 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       whileHover={{ y: -6 }}
       className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-brand-charcoal transition-colors hover:border-brand-green/40"
     >
-      <div className="relative aspect-square overflow-hidden bg-brand-white">
+      <div className="relative aspect-square overflow-hidden bg-gradient-to-b from-white/[0.04] to-transparent">
         <motion.img
           src={product.image}
           alt={product.imageAlt}
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-contain p-6"
+          className="h-full w-full object-contain p-8 drop-shadow-[0_18px_24px_rgba(0,0,0,0.55)]"
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 1.03 }}
           transition={{ duration: 0.35, ease: "easeOut" }}

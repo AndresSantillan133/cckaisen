@@ -16,7 +16,7 @@ export default function CartItem({ line }: { line: CartLineDetail }) {
       transition={{ duration: 0.25 }}
       className="flex gap-3 border-b border-white/10 py-4"
     >
-      <div className="h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-brand-white">
+      <div className="h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-white/5">
         <img
           src={line.image}
           alt=""
