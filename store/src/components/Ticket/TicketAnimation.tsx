@@ -1,9 +1,10 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { CheckCircle2, Download, MessageCircle, X } from "lucide-react";
-import html2canvas from "html2canvas";
+import { toPng } from "html-to-image";
 import type { CartLineDetail } from "../../lib/cart";
 import type { CustomerInfo } from "../../lib/types";
+import { useToast } from "../../hooks/useToast";
 import Ticket from "./Ticket";
 
 interface TicketAnimationProps {
@@ -30,6 +31,7 @@ export default function TicketAnimation({
   onClose,
 }: TicketAnimationProps) {
   const reduceMotion = useReducedMotion();
+  const { show } = useToast();
   const measureRef = useRef<HTMLDivElement>(null);
   const ticketRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | null>(null);
@@ -50,16 +52,27 @@ export default function TicketAnimation({
     if (!ticketRef.current) return;
     setDownloading(true);
     try {
-      const canvas = await html2canvas(ticketRef.current, {
+      // skipFonts evita que la librería intente descargar e incrustar la
+      // tipografía de Google Fonts dentro de la imagen: esa descarga puede
+      // colgarse indefinidamente en redes lentas o restringidas, dejando el
+      // botón en "Generando..." para siempre. El ticket usa fuente
+      // monoespaciada de sistema de cualquier forma, así que no se pierde nada.
+      const dataUrlPromise = toPng(ticketRef.current, {
         backgroundColor: "#ffffff",
-        scale: 2,
-        useCORS: true,
+        pixelRatio: 2,
+        skipFonts: true,
       });
-      const dataUrl = canvas.toDataURL("image/png");
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("Tiempo de espera agotado")), 10000),
+      );
+      const dataUrl = await Promise.race([dataUrlPromise, timeoutPromise]);
       const link = document.createElement("a");
       link.href = dataUrl;
       link.download = `pedido-${orderNumber}.png`;
       link.click();
+    } catch (error) {
+      console.error("No se pudo generar la imagen del ticket:", error);
+      show("No se pudo generar la imagen. Intenta de nuevo.");
     } finally {
       setDownloading(false);
     }
