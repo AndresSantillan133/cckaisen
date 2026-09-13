@@ -56,13 +56,7 @@ function StoreApp() {
     const orderNumber = generateOrderNumber();
     const date = new Date();
 
-    const message = buildOrderMessage({
-      orderNumber,
-      lines,
-      subtotal,
-      total,
-      customer,
-    });
+    const message = buildOrderMessage(orderNumber);
     const whatsappLink = buildWhatsAppLink(message);
 
     // WhatsApp se abre solo cuando el cliente le da clic a "Abrir WhatsApp"

@@ -84,14 +84,23 @@ const Ticket = forwardRef<HTMLDivElement, TicketProps>(function Ticket(
         <tbody>
           {lines.map((line) => (
             <tr key={`${line.productId}-${line.size}`} className="align-top">
-              <td className="py-1 pr-2">
+              <td className="w-12 py-1.5 pr-2">
+                <div className="h-10 w-10 overflow-hidden border border-[rgba(0,0,0,0.15)] bg-[#f5f5f5]">
+                  <img
+                    src={line.image}
+                    alt=""
+                    className="h-full w-full object-contain p-0.5"
+                  />
+                </div>
+              </td>
+              <td className="py-1.5 pr-2">
                 <div className="font-semibold">{line.name}</div>
                 <div className="text-[#737373]">
                   Talla {line.size} · {line.quantity} ×{" "}
                   {formatPrice(line.unitPrice)}
                 </div>
               </td>
-              <td className="py-1 text-right font-semibold">
+              <td className="py-1.5 text-right font-semibold">
                 {formatPrice(line.lineTotal)}
               </td>
             </tr>

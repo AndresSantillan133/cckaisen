@@ -1,41 +1,13 @@
-import { STORE_CONFIG, formatPrice } from "../config/store";
-import type { CartLineDetail } from "./cart";
-import type { CustomerInfo } from "./types";
+import { STORE_CONFIG } from "../config/store";
 
-interface BuildOrderMessageParams {
-  orderNumber: string;
-  lines: CartLineDetail[];
-  subtotal: number;
-  total: number;
-  customer: CustomerInfo;
-}
-
-export function buildOrderMessage({
-  orderNumber,
-  total,
-  customer,
-}: BuildOrderMessageParams): string {
-  // El desglose de productos (nombre, talla, cantidad, precio) ya viene en
-  // la imagen del ticket que el cliente adjunta a continuación, así que no
-  // se repite aquí como texto. Se deja solo lo que conviene tener como
-  // texto buscable/copiable en WhatsApp: folio, total y datos de contacto
-  // y entrega.
-  return [
-    `PEDIDO #${orderNumber}`,
-    `TOTAL: ${formatPrice(total)}`,
-    "",
-    "DATOS DEL CLIENTE:",
-    `Nombre: ${customer.name}`,
-    `Teléfono: ${customer.phone}`,
-    "",
-    "DIRECCIÓN DE ENTREGA:",
-    customer.address,
-    `Ciudad: ${customer.city}`,
-    `Código postal: ${customer.postalCode}`,
-    `Referencias: ${customer.references || "N/A"}`,
-    "",
-    "📎 Adjunto el ticket con el detalle completo del pedido.",
-  ].join("\n");
+/**
+ * El folio, productos, total y datos de entrega ya van completos en la
+ * imagen del ticket que el cliente adjunta justo después de abrir este
+ * chat, así que el mensaje de texto no repite nada de eso — solo da
+ * contexto rápido para quien lo recibe.
+ */
+export function buildOrderMessage(orderNumber: string): string {
+  return `¡Hola! 👋 Quiero hacer este pedido (folio ${orderNumber}). Les mando el ticket con todos los detalles.`;
 }
 
 /**
