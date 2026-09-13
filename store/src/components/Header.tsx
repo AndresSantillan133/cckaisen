@@ -1,7 +1,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ShoppingBag } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
 import { STORE_CONFIG } from "../config/store";
 import { useCart } from "../lib/cart";
+
+const MotionLink = motion(Link);
 
 interface HeaderProps {
   onOpenCart: () => void;
@@ -29,30 +32,38 @@ export default function Header({ onOpenCart }: HeaderProps) {
         style={{ paddingTop: paddingY, paddingBottom: paddingY }}
         className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6"
       >
-        <motion.a
-          href="#top"
+        <MotionLink
+          to="/"
           whileHover={{ rotate: -3, scale: 1.04 }}
           whileTap={{ rotate: 0, scale: 0.97 }}
           transition={{ type: "spring", stiffness: 300, damping: 12 }}
           className="brand-wordmark inline-block text-xl sm:text-2xl"
         >
           {STORE_CONFIG.brand.name}
-        </motion.a>
+        </MotionLink>
 
         <nav className="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
           {[
-            { href: "#catalogo", label: "Catálogo" },
-            { href: "#nosotros", label: "Nosotros" },
-            { href: "#contacto", label: "Contacto" },
+            { to: "/catalogo", label: "Catálogo" },
+            { to: "/nosotros", label: "Nosotros" },
+            { to: "/contacto", label: "Contacto" },
           ].map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="group relative py-1 transition hover:text-white"
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) =>
+                `group relative py-1 transition hover:text-white ${isActive ? "text-white" : ""}`
+              }
             >
-              {link.label}
-              <span className="absolute inset-x-0 -bottom-0.5 h-[1.5px] scale-x-0 bg-brand-green transition-transform duration-300 ease-out group-hover:scale-x-100" />
-            </a>
+              {({ isActive }) => (
+                <>
+                  {link.label}
+                  <span
+                    className={`absolute inset-x-0 -bottom-0.5 h-[1.5px] bg-brand-green transition-transform duration-300 ease-out group-hover:scale-x-100 ${isActive ? "scale-x-100" : "scale-x-0"}`}
+                  />
+                </>
+              )}
+            </NavLink>
           ))}
         </nav>
 

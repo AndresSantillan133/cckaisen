@@ -2,10 +2,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section
-      id="nosotros"
-      className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6"
-    >
+    <section className="mx-auto flex min-h-[70vh] max-w-4xl flex-col items-center justify-center px-4 pb-20 pt-28 text-center sm:px-6 sm:pt-32">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
