@@ -12,25 +12,16 @@ interface BuildOrderMessageParams {
 
 export function buildOrderMessage({
   orderNumber,
-  lines,
-  subtotal,
   total,
   customer,
 }: BuildOrderMessageParams): string {
-  const productLines = lines
-    .map(
-      (l) =>
-        `- Playera: ${l.name}\n  Talla: ${l.size}\n  Cantidad: ${l.quantity}\n  Precio: ${formatPrice(l.unitPrice)} c/u (${formatPrice(l.lineTotal)})`,
-    )
-    .join("\n");
-
+  // El desglose de productos (nombre, talla, cantidad, precio) ya viene en
+  // la imagen del ticket que el cliente adjunta a continuación, así que no
+  // se repite aquí como texto. Se deja solo lo que conviene tener como
+  // texto buscable/copiable en WhatsApp: folio, total y datos de contacto
+  // y entrega.
   return [
     `PEDIDO #${orderNumber}`,
-    "",
-    "PRODUCTOS:",
-    productLines,
-    "",
-    `SUBTOTAL: ${formatPrice(subtotal)}`,
     `TOTAL: ${formatPrice(total)}`,
     "",
     "DATOS DEL CLIENTE:",
@@ -43,7 +34,7 @@ export function buildOrderMessage({
     `Código postal: ${customer.postalCode}`,
     `Referencias: ${customer.references || "N/A"}`,
     "",
-    `— Pedido generado desde la tienda ${STORE_CONFIG.brand.name}`,
+    "📎 Adjunto el ticket con el detalle completo del pedido.",
   ].join("\n");
 }
 
