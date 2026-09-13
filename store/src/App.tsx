@@ -49,10 +49,9 @@ function StoreApp() {
     });
     const whatsappLink = buildWhatsAppLink(message);
 
-    // Se abre en el mismo gesto de clic del usuario para que el navegador
-    // no bloquee la ventana emergente.
-    window.open(whatsappLink, "_blank", "noopener,noreferrer");
-
+    // WhatsApp se abre solo cuando el cliente le da clic a "Abrir WhatsApp"
+    // en el ticket (TicketAnimation), no automáticamente aquí: primero debe
+    // ver el ticket completo, y solo después se envía el pedido.
     setOrder({
       orderNumber,
       date,
