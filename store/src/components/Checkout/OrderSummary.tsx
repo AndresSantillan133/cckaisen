@@ -21,13 +21,20 @@ export default function OrderSummary({
         <h3 className="mb-2 text-xs font-semibold uppercase tracking-widest text-white/40">
           Productos
         </h3>
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-3">
           {lines.map((line) => (
             <li
               key={`${line.productId}-${line.size}`}
-              className="flex items-center justify-between text-sm"
+              className="flex items-center gap-3 text-sm"
             >
-              <span className="text-white/80">
+              <div className="h-12 w-12 shrink-0 overflow-hidden rounded-md bg-white/5">
+                <img
+                  src={line.image}
+                  alt=""
+                  className="h-full w-full object-contain p-1"
+                />
+              </div>
+              <span className="flex-1 text-white/80">
                 {line.name} · Talla {line.size} × {line.quantity}
               </span>
               <span className="font-medium text-white">
