@@ -21,7 +21,7 @@ export const PRODUCTS: Product[] = [
     description: "Playera oversized 100% algodón, corte amplio y caída premium.",
     price: 380,
     color: "Rosa",
-    image: "/products/placeholder-rosa.svg",
+    image: "/products/oversized-rosa.webp",
     imageAlt: "Playera oversized color rosa, vista frontal",
     active: true,
     sizes: [
@@ -35,7 +35,7 @@ export const PRODUCTS: Product[] = [
     description: "Playera oversized 100% algodón, corte amplio y caída premium.",
     price: 380,
     color: "Gris Jaspe",
-    image: "/products/placeholder-gris.svg",
+    image: "/products/oversized-gris.webp",
     imageAlt: "Playera oversized color gris jaspe, vista frontal",
     active: true,
     sizes: [
@@ -49,8 +49,8 @@ export const PRODUCTS: Product[] = [
     description: "Playera oversized 100% algodón, corte amplio y caída premium.",
     price: 380,
     color: "Navy",
-    image: "/products/placeholder-navy.svg",
-    imageAlt: "Playera oversized color azul navy, vista trasera",
+    image: "/products/oversized-navy.webp",
+    imageAlt: "Playera oversized color azul navy, vista frontal",
     active: true,
     sizes: [
       { size: "S", stock: 4 },
@@ -63,7 +63,7 @@ export const PRODUCTS: Product[] = [
     description: "Playera oversized 100% algodón, corte amplio y caída premium.",
     price: 380,
     color: "Crema",
-    image: "/products/placeholder-crema.svg",
+    image: "/products/oversized-crema.webp",
     imageAlt: "Playera oversized color crema, vista trasera",
     active: true,
     sizes: [
@@ -77,7 +77,7 @@ export const PRODUCTS: Product[] = [
     description: "Playera oversized 100% algodón, corte amplio y caída premium.",
     price: 380,
     color: "Negra",
-    image: "/products/placeholder-negra.svg",
+    image: "/products/oversized-negra.webp",
     imageAlt: "Playera oversized color negra, vista frontal",
     active: true,
     sizes: [
@@ -86,18 +86,17 @@ export const PRODUCTS: Product[] = [
     ],
   },
   {
-    id: "oversized-pendiente",
-    name: "Oversized Tee — Próximamente",
-    description: "Nuevo color en camino. Vuelve pronto.",
+    id: "oversized-carbon",
+    name: "Oversized Tee — Carbón",
+    description: "Playera oversized 100% algodón, corte amplio y caída premium.",
     price: 380,
-    color: "Por confirmar",
-    image: "/products/placeholder-pendiente.svg",
-    imageAlt: "Playera oversized, color por confirmar",
-    // Se mantiene oculta del catálogo hasta tener la foto real y el color confirmado.
-    active: false,
+    color: "Carbón",
+    image: "/products/oversized-carbon.webp",
+    imageAlt: "Playera oversized color gris carbón, vista trasera",
+    active: true,
     sizes: [
-      { size: "S", stock: 0 },
-      { size: "M", stock: 0 },
+      { size: "S", stock: 5 },
+      { size: "M", stock: 8 },
     ],
   },
 ];

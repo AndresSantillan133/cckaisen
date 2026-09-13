@@ -99,18 +99,19 @@ Todo vive en `src/data/products.ts`. Cada producto es un objeto:
 Para agregar una playera nueva: sube la foto a `public/products/`, agrega un
 objeto nuevo a este arreglo. No hace falta tocar ningún componente.
 
-### Sobre las imágenes actuales (IMPORTANTE)
+### Fotos de producto
 
-Las imágenes en `public/products/placeholder-*.svg` son **marcadores
-temporales** (silueta + color aproximado), no las fotos reales de las
-playeras. Esto es una limitación técnica real: las fotos que se comparten
-directamente en el chat no llegan a este proyecto como archivos — no hay
-forma de "extraerlas" automáticamente del chat hacia el repositorio.
+Las fotos reales viven en `public/products/` como `.webp` (mucho más
+livianas que un `.png`/`.jpg` con la misma calidad visual — hasta 90% menos
+peso). Si subes una foto nueva en otro formato, conviértela a WebP antes de
+usarla en el catálogo para no perder ese ahorro de peso.
 
-Para usar las fotos reales:
-1. Colócalas en `store/public/products/` (ej. `oversized-negra.jpg`).
-2. Cambia el campo `image` del producto correspondiente en `products.ts`
-   a esa ruta, ej. `/products/oversized-negra.jpg`.
+Nota técnica: las fotos que se comparten directamente pegándolas en el chat
+no llegan a este proyecto como archivos — no hay forma de "extraerlas"
+automáticamente del chat hacia el repositorio. Para agregar una foto nueva,
+súbela directo a `store/public/products/` desde GitHub (Add file → Upload
+files) o coméntaselo a quien tenga acceso al repo, y luego actualiza el
+campo `image` del producto correspondiente en `products.ts`.
 
 ## Configuración centralizada (WhatsApp, nombre de marca, moneda)
 
