@@ -5,7 +5,7 @@ export default function ProductGrid() {
   const products = getActiveProducts();
 
   return (
-    <section id="catalogo" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+    <section className="mx-auto max-w-6xl px-4 pb-20 pt-28 sm:px-6 sm:pt-32">
       <div className="mb-10 flex flex-col gap-2 text-center">
         <h2 className="font-display text-3xl uppercase tracking-tight sm:text-4xl">
           Catálogo

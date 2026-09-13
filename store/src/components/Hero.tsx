@@ -5,7 +5,10 @@ import {
   useTransform,
 } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { Link } from "react-router-dom";
 import { STORE_CONFIG } from "../config/store";
+
+const MotionLink = motion(Link);
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
@@ -101,8 +104,8 @@ export default function Hero() {
         </motion.p>
 
         <motion.div variants={item} className="mt-2">
-          <motion.a
-            href="#catalogo"
+          <MotionLink
+            to="/catalogo"
             animate={
               reduceMotion
                 ? {}
@@ -120,26 +123,32 @@ export default function Hero() {
             className="inline-flex items-center gap-2 rounded-full bg-brand-green px-8 py-4 text-base font-bold text-black"
           >
             Comprar ahora
-          </motion.a>
+          </MotionLink>
         </motion.div>
       </motion.div>
 
-      <motion.a
-        href="#catalogo"
-        aria-label="Ir al catálogo"
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.6 }}
-        className="absolute bottom-8 flex flex-col items-center gap-1 text-white/40"
+        className="absolute bottom-8"
       >
-        <span className="text-xs uppercase tracking-widest">Ver catálogo</span>
-        <motion.span
-          animate={reduceMotion ? {} : { y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        <Link
+          to="/catalogo"
+          aria-label="Ir al catálogo"
+          className="flex flex-col items-center gap-1 text-white/40"
         >
-          <ArrowDown size={18} />
-        </motion.span>
-      </motion.a>
+          <span className="text-xs uppercase tracking-widest">
+            Ver catálogo
+          </span>
+          <motion.span
+            animate={reduceMotion ? {} : { y: [0, 6, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ArrowDown size={18} />
+          </motion.span>
+        </Link>
+      </motion.div>
     </section>
   );
 }

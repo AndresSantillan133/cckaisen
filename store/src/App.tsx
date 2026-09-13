@@ -1,4 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import { CartProvider, useCart } from "./lib/cart";
 import { ToastProvider } from "./hooks/useToast";
 import { generateOrderNumber } from "./lib/orders";
@@ -12,6 +18,7 @@ import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
 import ProductGrid from "./components/ProductGrid";
 import About from "./components/About";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import CartDrawer from "./components/Cart/CartDrawer";
 import CheckoutModal from "./components/Checkout/CheckoutModal";
@@ -25,6 +32,15 @@ interface OrderData {
   total: number;
   customer: CustomerInfo;
   whatsappLink: string;
+}
+
+/** Vuelve arriba de la página en cada cambio de ruta (SPA no lo hace solo). */
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
+  return null;
 }
 
 function StoreApp() {
@@ -67,13 +83,24 @@ function StoreApp() {
 
   return (
     <>
+      <ScrollToTop />
       <Header onOpenCart={() => setCartOpen(true)} />
 
       <main>
-        <Hero />
-        <Marquee />
-        <ProductGrid />
-        <About />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                <Marquee />
+              </>
+            }
+          />
+          <Route path="/catalogo" element={<ProductGrid />} />
+          <Route path="/nosotros" element={<About />} />
+          <Route path="/contacto" element={<Contact />} />
+        </Routes>
       </main>
 
       <Footer />
@@ -112,11 +139,13 @@ function StoreApp() {
 
 function App() {
   return (
-    <CartProvider>
-      <ToastProvider>
-        <StoreApp />
-      </ToastProvider>
-    </CartProvider>
+    <BrowserRouter>
+      <CartProvider>
+        <ToastProvider>
+          <StoreApp />
+        </ToastProvider>
+      </CartProvider>
+    </BrowserRouter>
   );
 }
 
