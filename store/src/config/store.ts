@@ -16,7 +16,7 @@ export const STORE_CONFIG = {
 
   // Número de WhatsApp del dueño de la tienda, formato: código país + número, sin "+".
   whatsapp: {
-    number: "5214521642092",
+    number: "5214501112664",
   },
 
   currency: {
